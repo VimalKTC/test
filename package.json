@@ -1,9 +1,8 @@
-
 {
-  "name": "motoclique",
+  "name": "nodejs-ex",
   "version": "0.0.1",
-  "description": "Testing MotoClique",
-  "main": "index.js",
+  "description": "Node.js sample app for OpenShift 3",
+  "main": "server.js",
   "dependencies": {
     "chai": "^3.5.0",
     "chai-http": "^2.0.1",
@@ -24,9 +23,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/VimalKTC/test.git"
+    "url": "http://github.com/openshift/nodejs-ex.git"
   },
-  "author": "MAV",
+  "author": "Steve Speicher <sspeiche@gmail.com>",
   "license": "CC-BY-1.0",
   "bugs": {
     "url": "http://github.com/openshift/nodejs-ex/issues"
