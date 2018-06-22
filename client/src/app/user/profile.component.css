@@ -1,0 +1,14 @@
+.center_form{
+                  width: 90%;
+                  height: 90%;
+                  margin: auto;
+                  background-color:#E9E8E8;
+                  border:solid;
+                  border-width:1px;
+                  border-radius:5px;
+                  border-color:rgb(28, 104, 137);   
+                  color:black;
+}
+.padding{
+                padding: 30px;
+}

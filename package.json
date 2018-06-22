@@ -1,34 +1,27 @@
 {
-  "name": "nodejs-ex",
-  "version": "0.0.1",
-  "description": "Node.js sample app for OpenShift 3",
-  "main": "server.js",
-  "dependencies": {
-    "chai": "^3.5.0",
-    "chai-http": "^2.0.1",
-    "ejs": "^2.4.1",
-    "express": "^4.13.4",
-    "mocha": "^2.4.5",
-    "mongodb": "^2.1.16",
-    "morgan": "^1.7.0",
-    "object-assign":"4.1.0"
-  },
-  "engine": {
-    "node": "*",
-    "npm": "*"
-  },
+  "name": "myapp",
+  "version": "1.0.0",
+  "description": "Vehicle dealer app",
+  "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "test": "IP=0.0.0.0 PORT=3030 mocha --timeout 5000 tests/*_test.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "http://github.com/openshift/nodejs-ex.git"
-  },
-  "author": "Steve Speicher <sspeiche@gmail.com>",
-  "license": "CC-BY-1.0",
-  "bugs": {
-    "url": "http://github.com/openshift/nodejs-ex/issues"
-  },
-  "homepage": "http://github.com/openshift/nodejs-ex"
+  "author": "Robert Oinam",
+  "license": "ISC",
+  "dependencies": {
+    "@angular/cli": "^1.5.0",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "express-jwt": "^5.3.1",
+    "jQuery": "^1.7.4",
+    "jquery": "^3.3.1",
+    "jsdom": "^11.6.2",
+    "jsonwebtoken": "^8.2.0",
+    "lodash": "^4.17.5",
+    "mongoose": "^4.13.2",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "random-number": "0.0.9"
+  }
 }

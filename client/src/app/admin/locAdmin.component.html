@@ -1,0 +1,101 @@
+<div [hidden]="hidden.view" class="container">
+	
+    <div class="detail_form">
+        <div class="padding">
+			<label>Type Country, State, City or Location below to search.</label>
+			<input class="form-control" style="width: 100%;" type="text" [(ngModel)]="term" placeholder="Search..">
+            <table>
+				<thead>
+					<tr>
+						<th></th>
+						<th></th>
+						<th>Location</th>
+						<th>City</th>	
+						<th>State</th>
+						<th>Country</th>						
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor='let loc of locs | filter : {country:term, state:term, city:term, location:term}' >
+						<td><i class="glyphicon glyphicon-remove" (click)="onDelete($event,loc)"></i></td>
+						<td><i class="glyphicon glyphicon-pencil" (click)="onEdit($event,loc)"></i></td>
+						<td><button class="btn btn-link" (click)="onLocClick($event,loc)">{{loc.location}}</button></td>
+						<td>{{loc.city}}</td>
+						<td>{{loc.state}}</td>
+						<td>{{loc.country}}</td>						
+					</tr>
+				</tbody>
+			</table>
+			
+        </div>
+    </div>
+</div>
+
+
+
+<!-- -->
+
+<div [hidden]="hidden.add" class="container">
+    <div class="detail_form">
+        <div class="padding">		
+            <form class="form-horizontal" autocomplete="off">
+                <div class="form-group">
+                    <div class="form-inline">
+                        <label class="control-label col-sm-2" for="country">Country:</label>
+                        <div class="col-sm-10">
+                            <input style="width: 100%;" [disabled]="disabled.field" type="text" class="form-control" id="country" placeholder="Enter Country" [value] = "newItem.country" (input) = "newItem.country = $event.target.value">
+                        </div>
+                    </div>
+                </div>
+				<div class="form-group">
+                    <div class="form-inline">
+                        <label class="control-label col-sm-2" for="state">State:</label>
+                        <div class="col-sm-10">
+                            <input style="width: 100%;" [disabled]="disabled.field" type="text" class="form-control" id="state" placeholder="Enter State" [value] = "newItem.state" (input) = "newItem.state = $event.target.value">
+                        </div>
+                    </div>
+                </div>
+				<div class="form-group">
+                    <div class="form-inline">
+                        <label class="control-label col-sm-2" for="city">City:</label>
+                        <div class="col-sm-10">
+                            <input style="width: 100%;" [disabled]="disabled.field" type="text" class="form-control" id="city" placeholder="Enter City" [value] = "newItem.city" (input) = "newItem.city = $event.target.value">
+                        </div>
+                    </div>
+                </div>
+				<div class="form-group">
+                    <div class="form-inline">
+                        <label class="control-label col-sm-2" for="location">Location:</label>
+                        <div class="col-sm-10">
+                            <input style="width: 100%;" [disabled]="disabled.field" type="text" class="form-control" id="location" placeholder="Enter Location" [value] = "newItem.location" (input) = "newItem.location = $event.target.value">
+                        </div>
+                    </div>
+                </div>
+			</form>
+			
+        </div>
+    </div>
+</div>
+
+
+
+
+<!--footer-->
+<div style="padding: 10px;"></div>
+<div class="footerStyleAdmin">
+				<div class="row" style="padding: 5px;">
+					<div class="col-sm-6">
+						   <button type="submit" class="btn btn-default" (click)="onAddCancel($event)" [hidden]="hidden.add">
+								<span class="glyphicon glyphicon-remove"></span> Cancel
+							</button>							
+					</div>
+					<div class="col-sm-6" style="display:flex; justify-content:flex-end;">
+							<button type="submit" class="btn btn-default" (click)="onAddClick($event)" [hidden]="hidden.view">
+								<span class="glyphicon glyphicon-plus"></span> Add
+							</button>
+							<button type="submit" class="btn btn-default" (click)="onSave($event)" [hidden]="disabled.field || hidden.add">
+								<span class="glyphicon glyphicon-floppy-disk"></span> Save
+							</button>
+					 </div>
+			   </div>
+</div>

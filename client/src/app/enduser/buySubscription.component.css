@@ -1,0 +1,70 @@
+.page_title{
+	text-align: center;
+    font-size: x-large;
+    margin-top: 1rem;
+}
+.detail_form{
+    width: 90%;
+    height: 90%;
+    margin: auto;
+    background-color:#f9f9f9;
+    -webkit-box-shadow: 3px 3px 5px 6px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+	-moz-box-shadow:    3px 3px 5px 6px #ccc;  /* Firefox 3.5 - 3.6 */
+	box-shadow:         3px 3px 5px 6px #ccc;
+    color: #565454;
+}
+.padding{
+    padding: 30px;
+}
+.planWrapper{
+	padding: 6px;
+}
+.plan{
+	border-bottom: 1px solid #e5e5e5;
+    padding: 8px;
+    font-size: 15px;
+    font-weight: 700;
+	background: #ffffff;
+}
+
+.planDetail{
+	display: flex;
+    flex-flow: row;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+	width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+	
+	line-height: 22px;
+    height: 50px;
+    border-bottom: 1px solid #e5e5e5;
+}
+.planName{
+	font-size: 18px;
+}
+.validity{
+	font-size: 12px;
+    font-family: sans-serif;
+}
+.price{
+	font-size: 25px;
+}
+.features{
+	display: flex;
+    flex-flow: row;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+	font-size: 12px;
+    font-weight: 100;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+	margin-top: 10px;
+	line-height: 22px;
+}
+.continue{
+	padding: 15px;
+}

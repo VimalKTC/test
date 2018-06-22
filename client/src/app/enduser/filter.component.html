@@ -1,0 +1,41 @@
+
+<div class="container">
+	<b style="line-height: 50px; margin-left: 15px;">Filter conditions:</b>
+	<dynamic-form [item]="item" [parentComponent]="self" [editMode]="editMode"></dynamic-form>
+	
+	<div style="height: 100px"></div>
+	
+			<div class="footerStyle">
+				<div class="row" style="padding: 10px;">
+					<div class="col-sm-6">
+						   <!--<button type="submit" class="btn btn-default" style="width:100%;" [hidden]="!editMode" (click)="onFilterCancel($event)">
+							   <span class="glyphicon glyphicon-remove"></span> Cancel
+						   </button>-->
+						   
+						   <button type="submit" class="btn btn-default" style="width:100%;" (click)="onClearFilter($event)">
+							   <span class="glyphicon glyphicon-remove"></span> Clear
+						   </button>
+					</div>
+					<div class="col-sm-6" style="display:flex; justify-content:flex-end;">						
+						  <button type="submit" class="btn btn-default" style="width:100%;" (click)="onFilterSave($event)">
+							   <span class="glyphicon glyphicon-floppy-disk"></span> Save
+						  </button>
+						  						
+						  <!--<button type="submit" class="btn btn-default" style="width:100%;" [hidden]="editMode" (click)="onEdit($event)">
+							   <span class="glyphicon glyphicon-pencil"></span> Edit
+						  </button>-->
+						  
+					 </div>
+			   </div>
+		   </div>
+</div>
+
+
+<app-dialog [(visible)]="showListDialog">
+	<div style="padding: 40px;">
+		<div class="listHeader">Select a value</div>
+		<div>
+			<!--<div class="listItem" *ngFor="let prdTyp of productTypes" (click)="onPrdTypSelect($event,prdTyp)" [hidden]="prdTyp.product_type_name === 'Service'">{{prdTyp.product_type_name}}</div>-->
+		</div>
+	</div>
+<app-dialog>

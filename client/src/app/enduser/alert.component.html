@@ -1,0 +1,346 @@
+<div [hidden]="hidden.view" class="container">
+        <div class="padding">
+            <table>
+                   <thead>
+                       <th>Bid/Sell/Buy</th>
+                       <!--<th>Individual/Dealer</th>-->
+                       <th>Product Type</th>
+                       <th>Brand</th>
+                       <th>Model</th>
+                       <!--<th>Variant</th>
+                       <th>Fuel Type</th>
+                       <th>City</th>
+                       <th>Price</th>
+                       <th>KM Done</th>
+                       <th>Year of Registration</th>-->
+                       <th>SMS</th>
+                       <th>Email</th>
+                       <th>App</th>
+                       <th>Active</th>
+                   </thead>
+                   <tr *ngFor="let alert of alerts">
+                       <td><button class="btn btn-link" (click)="onAlertSelect($event,alert)">{{alert.bid_sell_buy}}</button></td>
+                       <!--<td>{{alert.individual_dealer}}</td>-->
+                       <td>{{alert.product_type_name}}</td>
+                       <td>{{alert.brand_name}}</td>
+                       <td>{{alert.model}}</td>
+                       <!--<td>{{alert.variant}}</td>
+                       <td>{{alert.fuel_type}}</td>
+                       <td>{{alert.city}}</td>
+                       <td>{{alert.price_from}} - {{alert.price_to}}</td>
+                       <td>{{alert.km_run_from}} - {{alert.km_run_to}}</td>
+                       <td>{{alert.year_reg_from}} - {{alert.year_reg_to}}</td>-->
+                       <td><input type="checkbox" [disabled]="true" [checked]="alert.sms"></td>
+                       <td><input type="checkbox" [disabled]="true" [checked]="alert.email"></td>
+                       <td><input type="checkbox" [disabled]="true" [checked]="alert.app"></td>
+                       <td><input type="checkbox" [disabled]="true" [checked]="alert.active"></td>
+                   </tr>
+            </table>
+            <!--<button style="width: 100%" class="btn btn-default" (click)="onAlertAdd($event)">
+              <span class="glyphicon glyphicon-plus"></span> Add
+            </button>-->
+        </div>
+</div>
+
+
+
+
+<div [hidden]="hidden.add" class="container">
+        <div class="padding">
+              <form class="form-horizontal" >
+                  <div class="form-group">
+                         <!--<label class="control-label col-sm-2" for="bid_sell_buy">Bid/Sale/Buy:</label>
+                         <div class="col-sm-10">
+                             <select class="form-control" id="bid_sell_buy" [(ngModel)]="item.bid_sell_buy" name="bid_sell_buy" [disabled]="disabled.field">
+                                 <option *ngFor="let typ of alertTypes" [value]="typ.name">{{typ.name}}</option>
+                             </select>
+                         </div>-->
+						 
+						<div class="col-sm-12"> 
+							<mat-form-field style="width: 100%;">
+								<mat-select placeholder="Bid/Sale/Buy" name="bid_sell_buy" [(ngModel)]="item.bid_sell_buy" [disabled]="disabled.field" >
+									  <mat-option *ngFor="let typ of alertTypes" [value]="typ.name">{{typ.name}}</mat-option>
+								</mat-select>
+							</mat-form-field>
+						</div>
+                  </div>
+                  <div class="form-group">
+                         <!--<label class="control-label col-sm-2" for="individual_dealer">Individual/Dealer:</label>
+                         <div class="col-sm-10">
+                             <select class="form-control" id="individual_dealer" [(ngModel)]="item.individual_dealer" name="individual_dealer" [disabled]="disabled.field">
+                                  <option *ngFor="let typ of userTypes" [value]="typ.name">{{typ.name}}</option>
+                            </select>
+                         </div>-->
+						 
+						 <div class="col-sm-12"> 
+							<mat-form-field style="width: 100%;">
+								<mat-select placeholder="Individual/Dealer" name="individual_dealer" [(ngModel)]="item.individual_dealer" [disabled]="disabled.field" >
+									  <mat-option *ngFor="let typ of userTypes" [value]="typ.name">{{typ.name}}</mat-option>
+								</mat-select>
+							</mat-form-field>
+						</div>
+                  </div>
+                  <div class="form-group">
+                         <!--<label class="control-label col-sm-2" for="product_type_name">Product Type:</label>
+                         <div class="col-sm-10">
+                              <select class="form-control" id="product_type_name" [ngModel]="item.product_type_name" name="product_type_name" [hidden]="disabled.field" (ngModelChange)="onPrdTypSelect($event)">
+                                    <option *ngFor="let typ of productTypes" [ngValue]="typ" >{{typ.product_type_name}}</option>
+                             </select>
+							 <input [hidden]="!disabled.field" class="form-control" [disabled]="true" [(ngModel)]="item.product_type_name" name="product_type_name_display">
+                         </div>-->
+						 
+						 <div class="col-sm-12"> 
+							<mat-form-field style="width: 100%;" [hidden]="disabled.field">
+								<mat-select placeholder="Product Type" name="product_type_name" [(ngModel)]="item.product_type_name" (ngModelChange)="onPrdTypSelect($event)" >
+									  <mat-option *ngFor="let typ of productTypes" [value]="typ" >{{typ.product_type_name}}</mat-option>
+								</mat-select>
+							</mat-form-field>
+							<mat-form-field style="width: 100%;" [hidden]="!disabled.field">
+								<input matInput placeholder="Product Type"  [disabled]="true" [(ngModel)]="item.product_type_name" name="product_type_name_display" >
+							</mat-form-field>
+						</div>
+                  </div>
+                  <div class="form-group">
+                         <!--<label class="control-label col-sm-2" for="brand">Brand:</label>
+                         <div class="col-sm-10">
+                              <select class="form-control" id="brand" [ngModel]="item.brand_name" name="brand" [hidden]="disabled.field" (ngModelChange)="onBrandSelect($event)">
+                                  <option *ngFor="let brand of brands" [ngValue]="brand" >{{brand}}</option>
+                             </select>
+							 <input [hidden]="!disabled.field" class="form-control" [disabled]="true" [(ngModel)]="item.brand_name" name="brand_name_display">
+                        </div>-->
+						
+						<div class="col-sm-12"> 
+							<mat-form-field style="width: 100%;" [hidden]="disabled.field">
+								<mat-select placeholder="Brand" name="brand" [(ngModel)]="item.brand_name" (ngModelChange)="onBrandSelect($event)" >
+									  <mat-option *ngFor="let brand of brands" [value]="brand" >{{brand}}</mat-option>
+								</mat-select>
+							</mat-form-field>
+							<mat-form-field style="width: 100%;" [hidden]="!disabled.field">
+								<input matInput placeholder="Brand"  [disabled]="true" [(ngModel)]="item.brand_name" name="brand_name_display">
+							</mat-form-field>
+						</div>
+                 </div>
+                  <div class="form-group">
+                      <!--<label class="control-label col-sm-2" for="model">Model:</label>
+                        <div class="col-sm-10">
+                              <select class="form-control" id="model" [ngModel]="item.model" name="model" [hidden]="disabled.field" (ngModelChange)="onModelSelect($event)">
+                                    <option *ngFor="let model of models" [ngValue]="model" >{{model.model}}</option>
+                              </select>
+							  <input [hidden]="!disabled.field" class="form-control" [disabled]="true" [(ngModel)]="item.model" name="model_display">
+                     </div>-->
+					 
+						<div class="col-sm-12"> 
+							<mat-form-field style="width: 100%;" [hidden]="disabled.field" >
+								<mat-select placeholder="Model" name="model" [(ngModel)]="item.model" (ngModelChange)="onModelSelect($event)" >
+									  <mat-option *ngFor="let model of models" [value]="model" >{{model.model}}</mat-option>
+								</mat-select>
+							</mat-form-field>
+							<mat-form-field style="width: 100%;" [hidden]="!disabled.field">
+								<input matInput placeholder="Model"  [disabled]="true" [(ngModel)]="item.model" name="model_display">
+							</mat-form-field>
+						</div>
+                 </div>
+                 <div class="form-group">
+                        <!--<label class="control-label col-sm-2" for="variant">Variant:</label>
+                        <div class="col-sm-10">
+                              <select class="form-control" id="variant" [(ngModel)]="item.variant" name="variant" [hidden]="disabled.field">
+                                  <option *ngFor="let variant of variants" [value]="variant.variant">{{variant.variant}}</option>
+                              </select>
+							  <input [hidden]="!disabled.field" class="form-control" [disabled]="true" [(ngModel)]="item.variant" name="variant_display">
+                       </div>-->
+					   
+					   <div class="col-sm-12"> 
+							<mat-form-field style="width: 100%;" [hidden]="disabled.field">
+								<mat-select placeholder="Variant" name="variant" [(ngModel)]="item.variant" >
+									  <mat-option *ngFor="let variant of variants" [value]="variant.variant">{{variant.variant}}</mat-option>
+								</mat-select>
+							</mat-form-field>
+							<mat-form-field style="width: 100%;" [hidden]="!disabled.field" >
+								<input matInput placeholder="Variant" [disabled]="true" [(ngModel)]="item.variant" name="variant_display">
+							</mat-form-field>
+						</div>
+               </div>
+                <div class="form-group">
+                        <!--<label class="control-label col-sm-2" for="fuel_type">Fuel Type:</label>
+                        <div class="col-sm-10">
+                             <select class="form-control" id="fuel_type" [(ngModel)]="item.fuel_type" name="fuel_type" [disabled]="disabled.field">
+                                  <option *ngFor="let typ of fuelTypes" [value]="typ.name">{{typ.name}}</option>
+                            </select>
+                       </div>-->
+					   
+					   <div class="col-sm-12"> 
+							<mat-form-field style="width: 100%;">
+								<mat-select placeholder="Fuel Type" name="fuel_type" [(ngModel)]="item.fuel_type" [disabled]="disabled.field"  >
+									  <mat-option *ngFor="let typ of fuelTypes" [value]="typ.name">{{typ.name}}</mat-option>
+								</mat-select>
+							</mat-form-field>
+						</div>
+               </div>
+               <div class="form-group">
+                         <!--<label class="control-label col-sm-2" for="city">City:</label>
+                         <div class="col-sm-10">
+                               <select class="form-control" id="city" [(ngModel)]="item.city" name="city" [hidden]="disabled.field">
+                                 <option *ngFor="let city of cities" [value]="city.city">{{city.city}}</option>
+                               </select>
+							   <input [hidden]="!disabled.field" class="form-control" [disabled]="true" [(ngModel)]="item.city" name="city_display">
+                         </div>-->
+						 
+						 <div class="col-sm-12"> 
+							<mat-form-field style="width: 100%;" [hidden]="disabled.field">
+								<mat-select placeholder="City" name="city" [(ngModel)]="item.city"  >
+									  <mat-option *ngFor="let city of cities" [value]="city.city">{{city.city}}</mat-option>
+								</mat-select>
+							</mat-form-field>
+							<mat-form-field style="width: 100%;" [hidden]="!disabled.field" >
+								<input matInput placeholder="City" [disabled]="true" [(ngModel)]="item.city" name="city_display">
+							</mat-form-field>
+						</div>
+               </div>
+               <div class="form-group">
+                       <!--<label class="control-label col-sm-2" >Price:</label>
+                       <div class="col-sm-5">
+                             <input style="width: 100%;" type="text" class="form-control" [disabled]="disabled.field" placeholder="Min"  id="price_from" [(ngModel)]="item.price_from" name="price_from" (focusout)="validatePrice()">
+						</div>
+						<div class="col-sm-5">
+							 <input style="width: 100%;" type="text" class="form-control" [disabled]="disabled.field" placeholder="Max"  id="price_to" [(ngModel)]="item.price_to" name="price_to" (focusout)="validatePrice()">
+                       </div>-->
+					   
+					   <div class="col-sm-6">
+						   <mat-form-field style="width: 100%;">
+								<input matInput placeholder="Price(Min)" [disabled]="disabled.field" [(ngModel)]="item.price_from" name="price_from" (focusout)="validatePrice()">
+							</mat-form-field>
+						</div>
+						<div class="col-sm-6">
+						   <mat-form-field style="width: 100%;">
+								<input matInput placeholder="Price(Max)" [disabled]="disabled.field" [(ngModel)]="item.price_to" name="price_to" (focusout)="validatePrice()" >
+							</mat-form-field>
+						</div>
+					   
+              </div>
+               <div class="form-group">
+                      <!--<label class="control-label col-sm-2" >KM Done:</label>
+                       <div class="col-sm-5">
+                             <input style="width: 100%;" type="text" class="form-control" [disabled]="disabled.field"  id="km_run_from" placeholder="Min" [(ngModel)]="item.km_run_from" name="km_run_from" (focusout)="validateKM()">
+						</div>
+						<div class="col-sm-5">
+							 <input style="width: 100%;" type="text" class="form-control" [disabled]="disabled.field"  id="km_run_to" placeholder="Max" [(ngModel)]="item.km_run_to" name="km_run_to" (focusout)="validateKM()">
+                       </div>-->
+					   
+					   <div class="col-sm-6">
+						   <mat-form-field style="width: 100%;">
+								<input matInput placeholder="KM(Min)" [disabled]="disabled.field" [(ngModel)]="item.km_run_from" name="km_run_from" (focusout)="validateKM()">
+							</mat-form-field>
+						</div>
+						<div class="col-sm-6">
+						   <mat-form-field style="width: 100%;">
+								<input matInput placeholder="KM(Max)" [disabled]="disabled.field" [(ngModel)]="item.km_run_to" name="km_run_to" (focusout)="validateKM()" >
+							</mat-form-field>
+						</div>
+					   
+				</div>
+                <div class="form-group">
+                       <!--<label class="control-label col-sm-2" >Year of Registration:</label>
+                       <div class="col-sm-5">
+                             <select style="width: 100%;" class="form-control" id="year_reg_from" [(ngModel)]="item.year_reg_from" name="year_reg_from" [disabled]="disabled.field" (focusout)="validateReg()">
+                                   <option *ngFor="let yr of years" [value]="yr.name">{{yr.name}}</option>
+                             </select>
+						</div>
+						<div class="col-sm-5">
+							 <select style="width: 100%;" class="form-control" id="year_reg_to" [(ngModel)]="item.year_reg_to" name="year_reg_to" [disabled]="disabled.field" (focusout)="validateReg()">
+                                   <option *ngFor="let yr of years" [value]="yr.name">{{yr.name}}</option>
+                             </select>
+						</div>-->
+						
+						
+						<div class="col-sm-6"> 
+							<mat-form-field style="width: 100%;">
+								<mat-select placeholder="Year of Registration(From)" name="year_reg_from" [(ngModel)]="item.year_reg_from" [disabled]="disabled.field" (focusout)="validateReg()">
+									  <mat-option *ngFor="let yr of years" [value]="yr.name">{{yr.name}}</mat-option>
+								</mat-select>
+							</mat-form-field>
+						</div>
+						<div class="col-sm-6"> 
+							<mat-form-field style="width: 100%;">
+								<mat-select placeholder="Year of Registration(To)" name="year_reg_to" [(ngModel)]="item.year_reg_to" [disabled]="disabled.field" (focusout)="validateReg()">
+									  <mat-option *ngFor="let yr of years" [value]="yr.name">{{yr.name}}</mat-option>
+								</mat-select>
+							</mat-form-field>
+						</div>
+                </div>
+                <div class="form-group">
+                        <!--<label class="control-label col-sm-2" for="sms">SMS:</label>
+                        <div class="col-sm-10">
+                             <input type="checkbox" style="width:50px" [disabled]="disabled.field"  id="sms" [(ngModel)]="item.sms" name="sms">
+                        </div>-->
+						
+						<div class="col-sm-12">
+							<mat-checkbox [disabled]="disabled.field" [(ngModel)]="item.sms" name="sms" >SMS</mat-checkbox>
+						</div>
+                </div>
+                <div class="form-group">
+                         <!--<label class="control-label col-sm-2" for="email">Email:</label>
+                         <div class="col-sm-10">
+                              <input type="checkbox" style="width:50px" [disabled]="disabled.field"  id="email" [(ngModel)]="item.email" name="email">
+                         </div>-->
+						 
+						 <div class="col-sm-12">
+							<mat-checkbox [disabled]="disabled.field"  [(ngModel)]="item.email" name="email" >Email</mat-checkbox>
+						</div>
+               </div>
+                <div class="form-group">
+                       <!--<label class="control-label col-sm-2" for="app">App:</label>
+                         <div class="col-sm-10">
+                                   <input type="checkbox" style="width:50px" [disabled]="disabled.field"  id="app" [(ngModel)]="item.app" name="app">
+                         </div>-->
+						 
+						 <div class="col-sm-12">
+							<mat-checkbox [disabled]="disabled.field"  [(ngModel)]="item.app" name="app" >App</mat-checkbox>
+						</div>
+               </div>
+               <div class="form-group">
+                        <!--<label class="control-label col-sm-2" for="active">Active:</label>
+                        <div class="col-sm-10">
+                            <input type="checkbox" style="width:50px" [disabled]="disabled.field"  id="active" [(ngModel)]="item.active" name="active">
+                        </div>-->
+						
+						<div class="col-sm-12">
+							<mat-checkbox [disabled]="disabled.field"  [(ngModel)]="item.active" name="active" >Active</mat-checkbox>
+						</div>
+               </div>
+               <!--<div class="form-group">
+                       <div class="col-sm-offset-2 col-sm-10">
+                              <button type="submit" class="btn btn-default" (click)="onAlertSaveCancel($event)">
+                                <span class="glyphicon glyphicon-remove"></span> Cancel
+                              </button>
+                              <button type="submit" class="btn btn-default" [hidden]="disabled.field" (click)="onAlertSave($event)">
+                                   <span class="glyphicon glyphicon-floppy-disk"></span> Save
+                              </button>
+                       </div>
+              </div>-->
+           </form>
+         </div>
+</div>
+
+
+
+<div class="footerStyle">
+		<div class="row" style="padding: 10px;">
+					<div class="col-sm-6">
+						   <button type="submit" class="btn btn-default" style="width:100%;" (click)="onAlertSaveCancel($event)" [hidden]="hidden.add">
+							   <span class="glyphicon glyphicon-remove"></span> Cancel
+						   </button>
+						   
+					</div>
+					<div class="col-sm-6" style="display:flex; justify-content:flex-end;">						
+						  <button type="submit" class="btn btn-default" style="width:100%;" (click)="onAlertSave($event)" [hidden]="hidden.add || disabled.field">
+							   <span class="glyphicon glyphicon-floppy-disk"></span> Save
+						  </button>
+						  					
+						 
+						  <button type="submit" style="width: 100%" class="btn btn-default" (click)="onAlertAdd($event)" [hidden]="hidden.view">
+							  <span class="glyphicon glyphicon-plus"></span> Add
+							</button>
+						
+					 </div>
+		</div>
+</div>

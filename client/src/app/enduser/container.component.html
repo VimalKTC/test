@@ -1,0 +1,123 @@
+<mat-toolbar style="position: fixed; z-index: 2;">
+	<div style="display:flex; justify-content:space-between; width: 100%;">
+		<div>
+			<button mat-button class="nav_menu" (click)="sidenav.toggle()"><span class="glyphicon glyphicon-menu-hamburger"></span></button>
+			<button mat-button class="home_icon" (click)="onHome()"><span class="glyphicon glyphicon-home"></span></button>
+		</div>
+		
+		<div style="font-size: 22px; padding: 12px;"><span>{{title}}</span></div>
+		
+		<div style="width:100px; display:flex; align-items: start; justify-content: flex-start;">	
+				<!--<div style="padding: 12px; cursor:pointer;" (click)="onFilter($event)">
+					<span style="font-size:28px;" class="glyphicon glyphicon-filter" [style.color]="filterItem.length > 0 ? '#c41b34' : 'black'"></span>
+				</div>-->
+				<button mat-button class="filter_icon" (click)="onFilter($event)">
+					<span class="glyphicon glyphicon-filter" [style.color]="filterFlag ? '#c41b34' : 'black'"></span>
+				</button>
+				<div class="dropdown">		
+				  <button class="dropbtn">
+					<span class="user_icon_black"></span>
+				  </button>
+				  <div class="dropdown-content">
+					<div style="display: flex;  flex-direction: column;">
+						<button [disabled]="!enableAccount" style="text-align:left; text-indent:5px; padding: 10px;" class="btn btn-link" (click)="onNameClick($event)">{{userDetail.name}}</button>
+						<button *ngIf="enableAddress" style="text-align:left; text-indent:5px; padding: 10px;" class="btn btn-link" (click)="onAddressClick($event)">Address</button>
+						<button *ngIf="enableSubscription" style="text-align:left; text-indent:5px; padding: 10px;" class="btn btn-link" (click)="onSubscriptionClick($event)">Subscription</button>
+						<button *ngIf="enableAlert" style="text-align:left; text-indent:5px; padding: 10px;" class="btn btn-link" (click)="onAlertClick($event)">Alerts</button>
+						<button *ngIf="enableFav" style="text-align:left; text-indent:5px; padding: 10px;" class="btn btn-link" (click)="onFavClick($event)">Favourite</button>
+						<button style="width: 100%;" mat-raised-button style="background:#c41b34; color:white;" (click)="logout($event)"><span class="glyphicon glyphicon-off"></span> Sign Out</button>
+					</div>
+				  </div>
+				</div>
+		</div>
+	</div>
+</mat-toolbar>
+
+<mat-sidenav-container style="height: 100%;">
+  <mat-sidenav #sidenav mode="side" style="background: #fcfcfc !important; position: fixed;"  [(opened)]="opened">
+	<div class="userscreen-frame">
+		<mat-nav-list>
+			<mat-list-item *ngFor="let screen of screenAccess">
+			 <button id="{{screen.id}}" (click)="onNav($event)"  
+				class="btn btn-link" style="width:200px; padding:10px; text-align:left; text-indent:10px; font-size:18px; outline:none !important;" 
+					[hidden]="!(screen.applicable) || !(screen.for_nav)">{{screen.name}}</button>
+			</mat-list-item>
+		</mat-nav-list>
+	</div>
+  </mat-sidenav>
+
+  <mat-sidenav-content style="background: white !important;">
+	<div class="overlayStyle" (click)="sidenav.toggle()" [hidden]="!opened"></div>
+	<div id="userscreen_frame" class="userscreen-frame">
+		<router-outlet ></router-outlet>
+	</div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+  <a id="{{screen.id}}" (click)="onNav($event)" *ngFor="let screen of screenAccess" [hidden]="!(screen.applicable) || !(screen.for_nav)">{{screen.name}}</a>
+</div>
+
+<div class="overlayStyle" (click)="closeNav()" id="myOverlay"></div>
+
+<div class="headerStyle">
+	<div style="display:flex; justify-content:space-between;">
+		<div style="width:150px; display:flex;">
+			<button class="nav_menu" (click)="openNav()">
+				<span>&#9776;</span>
+			</button>	
+			<b style="font-size: 22px; color: white; position: absolute; top: 10px; left: 80px;">{{title}}</b>
+		</div>
+		
+		<div style="width:140px; display:flex;">	
+			<div style="padding: 12px; cursor:pointer;" (click)="onFilter($event)">
+				<span style="font-size:20px;" class="glyphicon glyphicon-filter" [style.color]="filterItem._id === undefined ? 'white' : '#c41b34'"></span>
+			</div>
+			<div class="dropdown">		
+			  <button class="dropbtn">
+				<span class="user_icon"></span>
+			  </button>
+			  <div class="dropdown-content">
+				<a>User: {{userDetail.user_id}}</a>
+				<a>{{userDetail.name}}</a>
+				<button style="width: 100%;" mat-raised-button color="primary" (click)="logout($event)"><span class="glyphicon glyphicon-off"></span> Sign Out</button>
+			  </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="userscreen-frame">
+	<router-outlet ></router-outlet>
+</div>-->
+
+<!--<app-dialog [(visible)]="showFilterDialog">
+	<div style="display: flex; justify-content: center; border-bottom: 1px solid gray; height: 35px;">
+		<b style="font-size: large;">Filter By:</b>
+	</div>
+	<div style="padding: 40px;">
+		<dynamic-form [item]="filterItem" [parentComponent]="self" [editMode]="editMode"></dynamic-form>
+	</div>
+	<div>
+		<button class="btn btn-default" style="width:100%;" (click)="onSave($event)">
+			<span class="glyphicon glyphicon-floppy-disk"></span> Save
+		</button>
+	</div>
+</app-dialog>-->

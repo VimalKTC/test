@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="detail_form">
+        <div class="padding">
+			<label>Type Parameter Name below to search.</label>
+			<input class="form-control" style="width: 100%;" type="text" [(ngModel)]="term" placeholder="Search..">
+            <table>
+				<thead>
+					<tr>
+						<th></th>
+						<th>Parameter</th>
+						<th>Value</th>						
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor='let parameter of parameters | filter : {parameter:term} ; let indx = index'>
+						<td><i class="glyphicon glyphicon-remove" (click)="onDelete($event,parameter)"></i></td>
+						<td>
+							<select class="form-control" [(ngModel)]="parameter.parameter" name="'param' + indx" [disabled]="!parameter.dirty">
+								<option value=""></option>
+								<option value="email_api_key">Email API Key</option>
+								<option value="sms_api_key">SMS API Key</option>
+								<option value="google_api_key">Google API Key</option>
+								<option value="bid_hike_pc">Bid Hike Percentage</option>
+							</select>
+						</td>
+						<td><input class="form-control" [(ngModel)]="parameter.value" name="'val' + indx" [disabled]="!parameter.dirty"></td>						
+					</tr>
+				</tbody>
+			</table>
+			
+        </div>
+    </div>
+</div>
+
+
+
+<!--footer-->
+<div style="padding: 10px;"></div>
+<div class="footerStyleAdmin">
+				<div class="row" style="padding: 5px;">
+					<div class="col-sm-6">
+						   <button type="submit" class="btn btn-default" (click)="onAddCancel($event)" >
+								<span class="glyphicon glyphicon-remove"></span> Cancel
+							</button>							
+					</div>
+					<div class="col-sm-6" style="display:flex; justify-content:flex-end;">
+							<button type="submit" class="btn btn-default" (click)="onAddClick($event)">
+								<span class="glyphicon glyphicon-plus"></span> Add
+							</button>
+							<button type="submit" class="btn btn-default" (click)="onSave($event)">
+								<span class="glyphicon glyphicon-floppy-disk"></span> Save
+							</button>
+					 </div>
+			   </div>
+</div>
+

@@ -1,0 +1,154 @@
+<div [hidden]="hidden.view" class="container">
+	
+    <div class="detail_form">
+        <div class="padding">
+			<label>Type Field Name below to search.</label>
+			<input class="form-control" style="width: 100%;" type="text" [(ngModel)]="term" placeholder="Search..">
+            <table>
+				<thead>
+					<tr>
+						<th></th>
+						<th></th>
+						<th>Name</th>
+						<th>Type</th>
+						<th>Path</th>						
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor='let field of fields | filter : {field:term}'>
+						<td><i class="glyphicon glyphicon-remove" (click)="onDelete($event,field)"></i></td>
+						<td><i class="glyphicon glyphicon-pencil" (click)="onEditClick($event,field)"></i></td>
+						<td><button class="btn btn-link" (click)="onFieldClick($event,field)">{{field.field}}</button></td>
+						<td>{{field.type}}</td>
+						<td>{{field.path}}</td>						
+					</tr>
+				</tbody>
+			</table>
+			
+        </div>
+    </div>
+</div>
+
+
+
+<!-- -->
+
+<div [hidden]="hidden.add" class="container">
+    <div class="detail_form">
+        <div class="padding">		
+            <form class="form-horizontal" autocomplete="off">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="field">Field Name:</label>
+                        <div class="col-sm-10">
+                            <input style="width: 100%;" [disabled]="disabled.field" type="text" class="form-control" id="field" placeholder="Enter Field Name" [value] = "newItem.field" (input) = "newItem.field = $event.target.value">
+                        </div>
+                    </div>
+					<!--<div class="form-group">
+                        <label class="control-label col-sm-2" for="for_filter">For Filter Screen:</label>
+                        <div class="col-sm-10">
+                            <input [disabled]="disabled.field" type="checkbox" class="form-control" id="for_filter" [(ngModel)] = "newItem.for_filter" name="for_filter" (change)="onFilterScreenSelect($event)">
+                        </div>
+                    </div>-->
+					<div class="form-group" [hidden]="newItem.category === 'Filter'">
+                        <label class="control-label col-sm-2" for="type">Field Type:</label>
+                        <div class="col-sm-10">
+							<select id="type" class="form-control" style="width: 100%;" [disabled]="disabled.field" name="type" [(ngModel)]="newItem.type" >
+								<option *ngFor='let typ of types' [value]="typ.name">{{typ.name}}</option> 
+							</select>
+                        </div>
+                    </div>
+					<div class="form-group">
+                        <label class="control-label col-sm-2" for="path">Technical Field Name:</label>
+                        <div class="col-sm-10">
+                            <select id="path" class="form-control" style="width: 100%;" [disabled]="disabled.field" name="path" [(ngModel)]="newItem.path" (change)="setSource($event)">
+								<option *ngFor='let path of paths' [value]="path.name">{{path.name}}</option> 
+							</select>
+							<!--<input style="width: 100%;" [disabled]="disabled.field" type="text" class="form-control" id="path" placeholder="Enter Field Binding Path" [value] = "newItem.path" (input) = "newItem.path = $event.target.value">-->
+                        </div>
+                    </div>					
+					<div class="form-group" >
+                        <label class="control-label col-sm-2" >Mapped to screen:</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" style="width: 100%;" [disabled]="disabled.field" name="category" [(ngModel)]="newItem.category" (change)="onCategorySelect($event)">
+								<option *ngFor='let cat of categories' [value]="cat.name">{{cat.name}}</option> 
+							</select>
+						</div>
+                    </div>
+					<div class="form-group">
+                        <label class="control-label col-sm-2" for="required">Mandatory Field:</label>
+                        <div class="col-sm-10">
+                            <select id="required" class="form-control" style="width: 100%;" [disabled]="disabled.field" name="required" [(ngModel)]="newItem.required">
+								<option [ngValue]=true>Yes</option> 
+								<option [ngValue]=false>No</option> 
+							</select>
+							<!--<input [disabled]="disabled.field" type="checkbox" class="form-control" id="required" [(ngModel)] = "newItem.required" name="required">-->
+                        </div>
+                    </div>
+					
+					<div class="form-group" [hidden]="newItem.type !== 'Select'">
+                        <label class="control-label col-sm-2" for="from_config">Binding source:</label>
+                        <div class="col-sm-10">
+                            <select id="from_config" class="form-control" style="width: 100%;" [disabled]="disabled.field" name="from_config" [(ngModel)]="newItem.from_config" (change)="setSource($event)">
+								<option [ngValue]=false>Service</option> 
+								<option [ngValue]=true>Configuration</option> 
+							</select>
+							<!--<input [disabled]="disabled.field" type="checkbox" class="form-control" id="from_config" [(ngModel)] = "newItem.from_config" name="from_config" (change)="onFromConfigSelect($event)">-->
+                        </div>
+                    </div>
+					<div class="form-group" [hidden]="newItem.from_config || newItem.type !== 'Select'">
+                        <label class="control-label col-sm-2" for="source">Service Name:</label>
+                        <div class="col-sm-10">
+							<select id="source" class="form-control" style="width: 100%;" [disabled]="disabled.field" name="source" [(ngModel)]="newItem.service" (ngModelChange)="onServiceSelect($event)">
+								<option *ngFor='let srv of services' [ngValue]="srv">{{srv.name}}</option> 
+							</select>
+                            <!--<input style="width: 100%;" [disabled]="disabled.field" type="text" class="form-control" id="source" placeholder="Enter Field Value Source" [value] = "newItem.source" (input) = "newItem.source = $event.target.value">-->
+                        </div>
+                    </div>
+					<div class="form-group" [hidden]="newItem.from_config || newItem.type !== 'Select'">
+                        <label class="control-label col-sm-2" for="source">Service Key:</label>
+                        <div class="col-sm-10">
+                            <!--<select id="key" class="form-control" style="width: 100%;" [disabled]="disabled.field" name="key" [(ngModel)]="newItem.key">
+								<option *ngFor='let key of keys' [value]="key.name">{{key.name}}</option> 
+							</select>-->
+							<input style="width: 100%;" [disabled]=true type="text" class="form-control" id="key" placeholder="Enter Field Binding Key" [value] = "newItem.key" (input) = "newItem.key = $event.target.value">
+                        </div>
+                    </div>
+					<div class="form-group" [hidden]="newItem.from_config || newItem.type !== 'Select'">
+                        <label class="control-label col-sm-2" for="source">Service Value:</label>
+                        <div class="col-sm-10">
+							<!--<select id="value" class="form-control" style="width: 100%;" [disabled]="disabled.field" name="value" [(ngModel)]="newItem.value">
+								<option *ngFor='let val of values' [value]="val.name">{{val.name}}</option> 
+							</select>-->
+                            <input style="width: 100%;" [disabled]=true type="text" class="form-control" id="value" placeholder="Enter Field Binding Value" [value] = "newItem.value" (input) = "newItem.value = $event.target.value">
+                        </div>
+                    </div>
+					
+			</form>
+			
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!--footer-->
+<div style="padding: 10px;"></div>
+<div class="footerStyleAdmin">
+				<div class="row" style="padding: 5px;">
+					<div class="col-sm-6">
+						   <button type="submit" class="btn btn-default" (click)="onAddCancel($event)" [hidden]="hidden.add">
+								<span class="glyphicon glyphicon-remove"></span> Cancel
+							</button>							
+					</div>
+					<div class="col-sm-6" style="display:flex; justify-content:flex-end;">
+							<button type="submit" class="btn btn-default" (click)="onAddClick($event)" [hidden]="hidden.view">
+								<span class="glyphicon glyphicon-plus"></span> Add
+							</button>
+							<button type="submit" class="btn btn-default" (click)="onSave($event)" [hidden]="disabled.field || hidden.add">
+								<span class="glyphicon glyphicon-floppy-disk"></span> Save
+							</button>
+					 </div>
+			   </div>
+</div>

@@ -1,0 +1,18 @@
+.center_form{
+                  width: 60%;
+				  min-height: 35rem;
+				  max-height: 38rem;
+                  max-width: 35rem;
+                  margin: auto;
+                  position: absolute;
+                  top: 0; left: 0; bottom: 0; right: 0;
+                  background-color: #EBEBEB;
+                  border:solid;
+                  border-width:1px;
+                  border-radius:5px;
+                  border-color:rgb(28, 104, 137);   
+                  color:#957F7F;
+}
+.padding{
+                padding: 25px;
+}

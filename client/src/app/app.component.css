@@ -1,0 +1,65 @@
+[hidden] {
+  display: none !important;
+}
+
+.menu_icon:before {
+	content: url("./image/menu_white.png");
+}
+
+.user_icon:before {
+	content: url("./image/account_circle_white.png");
+}
+
+.user_icon_black:before {
+	content: url("./image/account_circle_black.png");
+}
+
+
+.detail_icon:before {
+	content: url("./image/detail_black.png");
+}
+.add_icon:before {
+	content: url("./image/add_black.png");
+}
+.edit_icon:before {
+	content: url("./image/edit_black.png");
+}
+.delete_icon:before {
+	content: url("./image/delete_black.png");
+}
+.save_icon:before {
+	content: url("./image/save_black.png");
+}
+.cross_icon:before {
+	content: url("./image/cross_black.png");
+}
+.small_cross_icon:before {
+	content: url("./image/small_cross_black.png");
+}
+.selectAll_icon:before {
+	content: url("./image/tick_black.png");
+}
+.small_add_icon:before {
+	content: url('./image/small_add_icon_green.png');
+}
+.small_delete_icon:before {
+	content: url('./image/small_delete_icon_red.png');
+}
+table td{
+	padding-left:1rem;
+}
+table{
+	width: 100%;
+}
+tr:nth-of-type(odd) { 
+	background: #eee; 
+}
+th { 
+	background: #b6b7ba; 
+	color: white; 
+	font-weight: bold;
+	padding: 8px;
+}
+td, th {		
+	border: 1px solid #ccc;
+}

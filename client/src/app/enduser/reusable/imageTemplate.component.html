@@ -1,0 +1,158 @@
+<div id="imageWholeContainer" class="wholeContainer">                                  
+       <div style="">
+          <div style="line-height: 25px; width: 100%; padding: 3%;">
+               <div style="display: flex; flex-direction: row; justify-content: space-between;">
+                   <div *ngIf="(item.transactionTyp !== 'Service')">
+                      <b style="font-size: 25px;" >{{item.brand_name}} {{item.model}} {{item.variant}}</b>
+                      <span style="font-size: 14px;">{{item.fuel_type ? item.fuel_type : ''}}</span>
+                   </div>
+				   <div *ngIf="(item.transactionTyp === 'Service')">
+                      <b style="font-size: 25px;" >{{item.model}}</b>
+                      <span style="font-size: 14px;">{{item.brand_name}} Service</span>
+                   </div>
+                   <b *ngIf="(item.transactionTyp !== 'Bid' && item.transactionTyp !== 'Service')" style="color: #c41b34; font-size: 20px;"><span *ngIf="item.transactionTyp === 'Buy'" class="glyphicon glyphicon-menu-left"></span> <span class="rupeeRed"></span>{{item.net_price ? item.net_price : '0'}}</b>
+				   <b *ngIf="item.transactionTyp === 'Bid'" style="color: #c41b34; font-size: 20px;"><span class="rupeeRed"></span>{{item.current_bid_amount ? item.current_bid_amount : '0'}}</b>
+				   <b *ngIf="item.transactionTyp === 'Service'" style="color: #c41b34; font-size: 18px;"><span style="font-size:12px;">Starts From </span> <span class="rupeeRed"></span>{{item.start_from_amount ? item.start_from_amount : '0'}}</b>
+              </div>
+			  <div style="display: flex; flex-direction: row; font-size: 12px; border-bottom: 2px solid gray;" *ngIf="(item.transactionTyp !== 'Service')">
+				  <div style="margin-right: 20px;"><span style="color:#c41b34;" class="glyphicon glyphicon-map-marker"></span> {{item.city ? item.city : '---'}}</div>
+				  <div style="margin-right: 20px;"><span *ngIf="item.transactionTyp === 'Buy'" style="font-weight: bold;" class="glyphicon glyphicon-menu-right"></span> <span style="color:#c41b34;" class="glyphicon glyphicon-time"></span> {{item.year_of_reg ? item.year_of_reg : '0000'}}</div>
+				  <div style="margin-right: 20px;"><span *ngIf="item.transactionTyp === 'Buy'" style="font-weight: bold;" class="glyphicon glyphicon-menu-left"></span> <span style="color:#c41b34;" class="glyphicon glyphicon-road"></span> {{item.km_done ? item.km_done : '0'}} KM</div>
+				  <div><span style="color:#c41b34;" class="glyphicon glyphicon-camera"></span> {{item.number_of_image ? item.number_of_image : '0'}}</div>
+			  </div>
+			  <div style="display: flex; flex-direction: row; font-size: 12px; border-bottom: 2px solid gray;" *ngIf="item.transactionTyp === 'Service'">
+				  <div><span style="color:#c41b34;" class="glyphicon glyphicon-map-marker"></span> {{item.city ? item.city : '---'}}</div>
+				  <div style="display:flex;">
+					  <div style="padding: 3px;"><div style="background-color: #c41b34;  width: 35px;  border-radius: 4px;  color: white; height: 18px;  line-height: 18px; text-align: center;">{{item.rating ? item.rating : '0'}} <span>&#9733;</span></div> </div>
+					  <div style="">{{item.no_of_rating ? item.no_of_rating : '0'}} Rating, {{item.no_of_feedback ? item.no_of_feedback : '0'}} Feedback</div>
+				  </div>
+			  </div>
+              <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="0" style="top: 10px;">                                                        
+                    <div class="carousel-inner">
+                         <div class="item active">
+                             <div id="imageFrame" style="position: relative;">
+                                  <div style="display: flex; justify-content: space-between; position: absolute; top: 20px; left: 5%; width: 90%; z-index:2;">
+                                      <!--<div style="font-size: 15px; font-weight: bolder; color: white; background-color: #c41b34;  border-radius: 15px; width: 80px; line-height: 30px; text-align: center; height: 30px;">{{item.transactionTyp}}</div>-->
+										<div *ngIf="item.transactionTyp === 'Sale'" title="Sale"><img src="assets/sale_icon.png"></div>
+										<div *ngIf="item.transactionTyp === 'Buy'" title="Buy Request"><img src="assets/buy_icon.png"></div>
+										<div *ngIf="item.transactionTyp === 'Bid'" title="Bid"><img src="assets/bid_icon.png"></div>
+										<div *ngIf="item.transactionTyp === 'Service'" title="Service"><img src="assets/service_icon.png"></div>
+									  <div [hidden]="item.user_id === userDetail.user_id">
+										<!--<div style="height:60px; width:100px; position:absolute; margin-top: -15px; margin-left: -15px;" [hidden]="editMode"></div>-->
+										  <span [hidden]="!(currentImage.fav)" style="font-size:40px; color:#FDB400; cursor: pointer;" id="fav" (click)="onFav($event)">&#9733;</span>
+										  <span [hidden]="(currentImage.fav)" style="font-size:40px; color:gray; cursor: pointer;" id="not-fav" (click)="onFav($event)">&#9734;</span>
+									  </div>
+									  <!--<div id="default" [hidden]="!(item.user_id === userDetail.user_id)" >
+										<div style="height:60px; width:100px; position:absolute; margin-top: -15px; margin-left: -15px;" [hidden]="editMode"></div>
+										<div (click)="onDefault($event)" style="font-size: 15px; color: white; border: 1px solid #c41b34;  border-radius: 15px; width: 80px; line-height: 30px; text-align: center; height: 30px;">
+											 <div [hidden]="!(currentImage.default)" style="font-size: 15px; color: white; background-color: #c41b34;  border-radius: 15px; width: 80px; line-height: 30px; text-align: center; height: 30px;">Default</div>
+											 <div [hidden]="(currentImage.default)" style="cursor:pointer; font-size: 15px; color: #c41b34; background-color: transparent;  border-radius: 15px; width: 80px; line-height: 30px; text-align: center; height: 30px;">Default</div>
+										</div>
+									 </div>-->
+                                  </div>
+                                  <!--<img src="{{currentImage.data}}" class="imageStyle">-->
+									<div class="portrait">
+										<img [hidden]="currentImage.no_image" src="{{currentImage.data}}">
+										<img [hidden]="!currentImage.no_image" src="/assets/noimage.jpg">
+									</div>
+								  
+								  <div [hidden]="(item.user_id === userDetail.user_id) || (item.bid_id === undefined) || (item.bid_id === null) || (item.bid_id === '')" style="display: flex; justify-content: flex-end; position: absolute; bottom: 5px; width: 90%;">
+                                      <div (click)="onParticipate($event)" style="cursor: pointer; font-size: 15px; font-weight: bolder; color: white; background-color: #c41b34;  border-radius: 10px; width: 90px; line-height: 30px; text-align: center;">Participate</div>
+                                  </div>
+                             </div>
+                        </div>
+                    </div>
+                    <!-- Left and right controls -->
+                    <a class="left carousel-control" href="#myCarousel" data-slide="prev" (click)="prevImage($event)">
+                           <span class="glyphicon glyphicon-chevron-left"></span>
+                           <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" data-slide="next" (click)="nextImage($event)">
+                           <span class="glyphicon glyphicon-chevron-right"></span>
+                           <span class="sr-only">Next</span>
+                    </a>
+              </div>
+           </div>
+		</div>
+                                           
+        <div style="padding: 3%;">
+		<div style="height: 130px;  border-top: 2px solid gray; border-bottom: 2px solid gray;">
+            <!--<button class="scrollButtonStyle" (click)="move_left()">&#8249;</button>-->
+			<div style="width: 100%; height: 97px; top: 15px; position: relative;">
+				<div id="imageScrollContainer" class="imageScrollContainerStyle" >                                                       
+					<div [hidden]="!editMode" style="width: 95px" class="thumbnailStyle">
+					  <button style="font-size: 50px; width: 80px; height: 78px; margin-top: 8px; margin-left: 8px;" (click)="addImage($event)">
+						 &#10011;
+					  </button>
+					</div>
+					<div class="thumbnailStyle" *ngFor="let thumbnail of thumbnails" [hidden]="thumbnail.markForDelete">
+						<div style="position:absolute; width: 100%; display: flex; justify-content: center; z-index:1">
+							<div style="display: flex; justify-content: space-between; width: 80%; margin-top: 8px;">
+								<div><span [hidden]="!editMode" class="thumbnailRemoveIcon glyphicon glyphicon-remove-circle" (click)="removeImage($event,thumbnail)"></span></div>
+								<input [disabled]="!editMode" type="radio" [checked]="thumbnail.default" (change)="onDefault($event,thumbnail)">
+							</div>
+						</div>
+						<img class="thumbnailImgStyle" src="{{thumbnail.data}}" (click)="thumbnailSelect($event,thumbnail)">
+						<div [hidden]="!thumbnail.selected" style="z-index: 0; position: absolute; top: 2.7%; left: 2.4%; width: 95%; height: 95%; border: 2px solid #c41b34;"></div>
+					</div>					
+				</div>
+			</div>
+            <!--<button class="scrollButtonStyle" (click)="move_right()">&#8250;</button>-->
+		</div> 
+		</div>		
+</div>
+
+
+
+
+<!-- -->
+<app-dialog [(visible)]="showUploadImageDialog">
+	<div>
+		<h3 class="page_title">Upload Image (JPEG, PNG, GIF)</h3>
+			<div class="padding">
+				<label></label>
+				<input class="form-control" style="width: 100%;" type="file" accept="image/*" (change)="onUpload($event)">
+			</div>
+	</div>
+</app-dialog>
+
+
+<!-- -->
+<app-dialog [(visible)]="showBidConfirmDialog">
+	<div>
+		<h3 class="page_title">Participate Info</h3>
+			<div class="padding">
+				<div>Participating in the Bidding process is chargeable of Rs. 150/- <br> Do you want to proceed?</div>
+				<div style="display:flex;">
+					<button class="btn btn-default" style="width: 50%;" (click)="onParticipateYes($event)">Yes</button>
+					<button class="btn btn-default" style="width: 50%;" (click)="onParticipateNo($event)">No</button>
+				</div>
+			</div>
+	</div>
+</app-dialog>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+<div style="display: flex;">
+     <div class="scrollButtonStyle" (click)="move_left()"><span>&#8249;</span></div>
+     <div id="imageScrollContainer" class="imageScrollContainerStyle" *ngFor="let thumbnail of thumbnails">                                                       
+          <div class="thumbnailStyle">
+               <img style="width:150px; height:80px;" src="{{thumbnail.thumbnail}}">
+          </div>
+                                                        
+      </div>
+      <div class="scrollButtonStyle" (click)="move_right()"><span>&#8250;</span></div>
+</div>-->

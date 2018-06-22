@@ -1,0 +1,80 @@
+<div [hidden]="hidden.view" class="container">
+    <div class="detail_form">
+        <div class="padding">
+			<label>Type Application ID or Name below to search.</label>
+			<input class="form-control" style="width: 100%;" type="text" [(ngModel)]="term" placeholder="Search..">
+            <table>
+				<thead>
+					<tr>
+						<th></th>
+						<th></th>
+						<th>Application ID</th>
+						<th>Application Name</th>						
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor='let application of applications | filter : {app_id:term, app_name:term}' [hidden]="application.deleted">
+						<td><i class="glyphicon glyphicon-remove" (click)="onDelete($event,application)"></i></td>
+						<td><i class="glyphicon glyphicon-pencil" (click)="onEdit($event,application)"></i></td>
+						<td><button class="btn btn-link" (click)="onAppClick($event,application)">{{application.app_id}}</button></td>
+						<td>{{application.app_name}}</td>						
+					</tr>
+				</tbody>
+			</table>
+			
+        </div>
+    </div>
+</div>
+
+
+
+<!-- -->
+
+<div [hidden]="hidden.add" class="container">
+    <div class="detail_form">
+        <div class="padding">		
+            <form class="form-horizontal" autocomplete="off">
+                <div class="form-group">
+                    <div class="form-inline">
+                        <label class="control-label col-sm-2" for="app_id">ID:</label>
+                        <div class="col-sm-10">
+                            <input style="width: 100%;" [disabled]="disabled.app_id" type="text" class="form-control" id="app_id" placeholder="Enter Application ID" [value] = "newItem.app_id" (input) = "newItem.app_id = $event.target.value">
+                        </div>
+                    </div>
+                </div>
+				<div class="form-group">
+                    <div class="form-inline">
+                        <label class="control-label col-sm-2" for="app_name">Name:</label>
+                        <div class="col-sm-10">
+                            <input style="width: 100%;" [disabled]="disabled.app_name" type="text" class="form-control" id="app_name" placeholder="Enter Application Name" [value] = "newItem.app_name" (input) = "newItem.app_name = $event.target.value">
+                        </div>
+                    </div>
+                </div>
+			</form>
+			
+        </div>
+    </div>
+</div>
+
+
+
+<!--footer-->
+<div style="padding: 10px;"></div>
+<div class="footerStyleAdmin">
+				<div class="row" style="padding: 5px;">
+					<div class="col-sm-6">
+						   <button type="submit" class="btn btn-default" (click)="onAddCancel($event)" [hidden]="hidden.add">
+								<span class="glyphicon glyphicon-remove"></span> Cancel
+							</button>							
+					</div>
+					<div class="col-sm-6" style="display:flex; justify-content:flex-end;">
+							<button type="submit" class="btn btn-default" (click)="onAddClick($event)" [hidden]="hidden.view">
+								<span class="glyphicon glyphicon-plus"></span> Add
+							</button>
+							<button type="submit" class="btn btn-default" (click)="onSave($event)" [hidden]="disabled.app_name || hidden.add">
+								<span class="glyphicon glyphicon-floppy-disk"></span> Save
+							</button>
+					 </div>
+			   </div>
+</div>
+

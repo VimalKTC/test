@@ -1,0 +1,193 @@
+.page_title{
+	text-align: center;
+    font-size: x-large;
+    margin-top: 1rem;
+}
+.detail_form{
+    width: 90%;
+    height: 90%;
+    margin: auto;
+    background-color:#f9f9f9;
+    -webkit-box-shadow: 3px 3px 5px 6px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+	-moz-box-shadow:    3px 3px 5px 6px #ccc;  /* Firefox 3.5 - 3.6 */
+	box-shadow:         3px 3px 5px 6px #ccc;
+    color: #565454;
+}
+.padding{
+    padding: 30px;
+}
+
+
+ul.topnav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #f1f1f1;
+}
+
+ul.topnav li {float: left;}
+
+ul.topnav li span {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+	font-weight: bold;
+}
+
+ul.topnav li span:hover:not(.active) {background-color: gray; color: white;}
+
+ul.topnav li span.active {background-color: #827d7b; color: white;}
+
+ul.topnav li.right {float: right;}
+
+@media screen and (max-width: 600px){
+    ul.topnav li.right, 
+    ul.topnav li {float: none;}
+}
+
+
+.listHeader{
+	background-color: #f7f7f7;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bolder;
+	padding: .875rem .5rem;
+}
+.listItem{
+	border-bottom: 1px solid #e5e5e5;
+    padding: 8px;
+    font-size: 15px;
+    font-weight: 700;
+	background: #ffffff;
+}
+.listItem:hover{
+	cursor: pointer;
+	color: white;
+	background-color: #aaacb5;
+}
+
+.createNewDiv{
+	width: 380px; height: 310px; position: relative;
+}
+.createNewInnerDiv{
+	width: 350px;
+    height: 290px;
+	border: 1px solid gray;
+	cursor:pointer;
+}
+.createNewInnerDiv:active{
+	border: 4px solid #8ac3d8;
+}
+.createNewIcon{
+	font-size: 100px; width: 140px; height: 140px; position: absolute; top: 25%; left: 30%; text-align: center; border: 1px solid; border-radius: 140px;
+}
+
+
+.resultItem{
+	line-height: 30px; width: 320px; padding: 13px;
+}
+.resultItemWrapper{
+	border: 1px solid gray; width: 350px;  position: relative;
+}
+.resultItemWrapper:active{
+	border: 4px solid #ccd8ff;
+}
+.resultItemType{
+	font-size: 12px; font-weight: bolder; color: white; background-color: red;  border-radius: 20px; width: 60px; line-height: 30px; text-align: center;
+}
+.resultItemImage{
+	width: 320px; height: 200px;
+}
+.resultItemDetailTop{
+	display: flex; flex-direction: row; width: 320px; justify-content: space-between;
+}
+.resultItemDetailBottom{
+	display: flex; flex-direction: row; width: 320px; font-size: 12px;
+}
+
+
+
+
+/*
+	Max width before this PARTICULAR table gets nasty
+	This query will take effect for any screen smaller than 760px
+	and also iPads specifically.
+	*/
+	@media
+	only screen and (max-width: 1024px),
+	(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+		/* Force table to not be like tables anymore */
+		table, thead, tbody, th, td, tr {
+			display: block;
+		}
+
+		/* Hide table headers (but not display: none;, for accessibility) */
+		thead tr {
+			position: absolute;
+			top: -9999px;
+			left: -9999px;
+		}
+
+		tr { border: 1px solid #ccc; }
+
+		td {
+			/* Behave  like a "row" */
+			border: none;
+			border-bottom: 1px solid #eee;
+			position: relative;
+			padding-left: 50%;
+		}
+
+		td:before {
+			/* Now like a table header */
+			position: absolute;
+			/* Top/left values mimic padding */			
+			left: 6px;
+			width: 45%;
+			padding-right: 10px;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			white-space: nowrap;
+			font-weight: bold;
+		}
+
+		/*
+		Label the data
+		*/
+		td:nth-of-type(1):before { content: "Bid/Sell/Buy:"; }
+		td:nth-of-type(2):before { content: "Individual/Dealer:"; }
+		td:nth-of-type(3):before { content: "Product Type:"; }
+		td:nth-of-type(4):before { content: "Brand:"; }
+		td:nth-of-type(5):before { content: "Model:"; }
+		td:nth-of-type(6):before { content: "Variant:"; }
+		td:nth-of-type(7):before { content: "Fuel Type:"; }
+		td:nth-of-type(8):before { content: "City:"; }
+		td:nth-of-type(9):before { content: "Price:"; }
+		td:nth-of-type(10):before { content: "KM Done:"; }
+		td:nth-of-type(11):before { content: "Year of Registration:"; }
+		td:nth-of-type(12):before { content: "SMS:"; }
+		td:nth-of-type(13):before { content: "Email:"; }
+		td:nth-of-type(14):before { content: "App:"; }
+		td:nth-of-type(15):before { content: "Active:"; }
+	}
+
+	/* Smartphones (portrait and landscape) ----------- */
+	@media only screen
+	and (min-device-width : 320px)
+	and (max-device-width : 480px) {
+		body {
+			padding: 0;
+			margin: 0;
+			width: 320px; }
+		}
+
+	/* iPads (portrait and landscape) ----------- */
+	@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+		body {
+			width: 495px;
+		}
+	}
