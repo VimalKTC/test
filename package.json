@@ -1,0 +1,31 @@
+
+{
+  "name": "motoclique",
+  "version": "0.0.1",
+  "description": "Testing MotoClique",
+  "main": "index.js",
+  "dependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^2.0.1",
+    "ejs": "^2.4.1",
+    "express": "^4.13.4",
+    "mocha": "^2.4.5",
+    "mongodb": "^2.1.16",
+    "morgan": "^1.7.0",
+    "object-assign":"4.1.0"
+  },
+  "engine": {
+    "node": "*",
+    "npm": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/VimalKTC/test.git"
+  },
+  "author": "MAV",
+  "license": "CC-BY-1.0",
+  "bugs": {
+    "url": "http://github.com/openshift/nodejs-ex/issues"
+  },
+  "homepage": "http://github.com/openshift/nodejs-ex"
+}
