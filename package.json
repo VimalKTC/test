@@ -11,7 +11,6 @@
     "express": "^4.16.3"
   },
   "scripts": {
-    "start": "node server.js",
-    "test": "IP=0.0.0.0 PORT=3030 mocha --timeout 5000 tests/*_test.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
