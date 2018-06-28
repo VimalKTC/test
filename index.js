@@ -5,7 +5,7 @@ var cors = require('cors');
 var path = require('path');
 var app = express();
 
-const port = 3000;
+const port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
 
 app.use(cors());
 app.use(bodyparser.json({limit: '50mb'}));
@@ -13,7 +13,7 @@ app.use(bodyparser.urlencoded({limit: '50mb', extended: true}));
 
 
 app.get('/', function (req, res) {
-     res.sendFile(path.join(__dirname+'/public/index.html'));
+     res.sendFile(path.join(__dirname+'/views/index.html'));
 });
 
 
