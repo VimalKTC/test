@@ -1,11 +1,11 @@
-var server   = require('../server'),
+var 
     chai     = require('chai'),
     chaiHTTP = require('chai-http'),
     should   = chai.should();
 
 chai.use(chaiHTTP);
 
-reqServer = process.env.HTTP_TEST_SERVER || server
+reqServer = process.env.HTTP_TEST_SERVER 
 
 describe('Basic routes tests', function() {
 
