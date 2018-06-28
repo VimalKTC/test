@@ -13,7 +13,7 @@ app.use(bodyparser.urlencoded({limit: '50mb', extended: true}));
 
 
 app.get('/', function (req, res) {
-     res.sendFile(path.join(__dirname+'/public/index.html'));
+     res.sendFile(path.join(__dirname+'/views/index.html'));
 });
 
 

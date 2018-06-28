@@ -2,7 +2,7 @@
   "name": "motoclique",
   "version": "0.0.1",
   "description": "Testing MotoClique",
-  "main": "index.js",
+  "main": "server.js",
   "dependencies": {
     "chai": "^3.5.0",
     "chai-http": "^2.0.1",
