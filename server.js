@@ -2,40 +2,16 @@
 //importing modules
 
 
+//  OpenShift sample Node application
 var express = require('express'),
-    app     = express(),
-    morgan  = require('morgan');
-    
-
-    var mongoose = require('mongoose');
-    var bodyparser = require('body-parser');
-    var cors = require('cors');
-    var path = require('path');
-    var passport = require('passport');
-    
-    
-    // [SH] Bring in the data model
-
-    
-    const route = require('./route');
-
-    
-
+app     = express(),
+morgan  = require('morgan');
 
 Object.assign=require('object-assign')
 
 app.engine('html', require('ejs').renderFile);
-app.use(morgan('combined'));
+app.use(morgan('combined'))
 
-app.use(cors());
-app.use(bodyparser.json({limit: '50mb'}));
-app.use(bodyparser.urlencoded({limit: '50mb', extended: true}));
-//app.use(bodyparser.json());
-
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.use(passport.initialize());
-app.use('/api',route);
 
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0',
