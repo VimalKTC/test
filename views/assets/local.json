@@ -1,0 +1,162 @@
+{
+   "alertTypes": [
+                    {"name": "All"},
+					{"name": "Bid"},
+                    {"name": "Sale"},
+                    {"name": "Buy"},
+					{"name": "Service"}
+                 ],
+   
+   "cities": [
+                {"name": "All"},
+				{"name": "Bangalore"},
+                {"name": "Delhi"},
+                {"name": "Mumbai"},
+				{"name": "Pune"},
+				{"name": "Kolkata"}
+              ],
+   "years": {
+              "from": "1970"
+            },
+			
+	"currencies": [
+		{"name":""},
+		{"name":"INR"},
+		{"name":"USD"},
+		{"name":"EUR"}
+	],
+	
+	
+	"fieldTypes": [
+		{"name": ""},
+		{"name": "Input"},
+		{"name": "Select"},
+		{"name": "Checkbox"}
+	],
+	
+	"categories":[
+		{"name": ""},
+		{"name": "Detail"},
+		{"name": "Specification"},
+		{"name": "Contact"}
+	],
+	
+	"tableAttributes": [
+		{"name": ""},
+		{"name": "product_type_id"},
+		{"name": "brand_id"},
+		{"name": "model"},
+		{"name": "variant"},
+		{"name": "color"},
+		{"name": "fuel_type"},
+		{"name": "body_type"},
+		{"name": "transmission"},
+		{"name": "owner_type"},
+		{"name": "listing_by"},
+		{"name": "verified_feature"},
+		{"name": "insurance"},
+		{"name": "accessories"},
+		{"name": "reg_state"},
+		{"name": "country"},
+		{"name": "state"},
+		{"name": "city"},
+		{"name": "location"},
+		{"name": "year_of_reg"},
+		{"name": "km_done"},
+		{"name": "list_price"},
+		{"name": "discount"},
+		{"name": "tax"},
+		{"name": "delivery"},
+		{"name": "others"},
+		{"name": "net_price"},
+		{"name": "bid_amount"},
+		{"name": "min_bid_hike"},
+		{"name": "bid_status"},
+		{"name": "address"},
+		{"name": "pin_code"},
+		{"name": "locality"},
+		{"name": "min_km"},
+		{"name": "max_km"},
+		{"name": "min_year_of_reg"},
+		{"name": "max_year_of_reg"},
+		{"name": "min_net_price"},
+		{"name": "max_net_price"}
+	],
+	
+	"serviceName": [
+		{"name": "", "key":"", "value":""},
+		{"name": "productTyp", "key":"product_type_id", "value":"product_type_name"},
+		{"name": "brand", "key":"brand_id", "value":"brand_name"},
+		{"name": "product", "key":"product_type_id", "value":"product_type_name"},
+		{"name": "country", "key":"country", "value":"country"},
+		{"name": "state/?country=", "key":"state", "value":"state"},
+		{"name": "city/?state=", "key":"city", "value":"city"},
+		{"name": "location/?city=", "key":"location", "value":"location"}
+	],
+	
+	
+	"color": [
+		{"name":""},
+		{"name":"White"},
+		{"name":"Silver"},
+		{"name":"Black"},
+		{"name":"Red"},
+		{"name":"Blue"},
+		{"name":"Green"},
+		{"name":"Metal Grey"},
+		{"name":"Others"}
+	],
+	
+	
+	"fuel_type": [
+                  {"name": ""},
+				  {"name": "Petrol"},
+                  {"name": "Diesel"},
+                  {"name": "LPG"}
+                ],
+	"body_type":[
+		{"name":"Solo"}
+	],
+	
+	"transmission":[
+		{"name":"Manual"},
+		{"name":"Automatic"}
+	],
+	
+	"owner_type": [
+		{"name":"First"},
+		{"name":"Second"},
+		{"name":"Third"}
+	],
+	
+	"listing_by": [
+				  {"name": "Individual"},
+                  {"name": "Dealer"}
+                ],
+	"bid_status": [
+		{"name":"Active"},
+		{"name":"Inactive"}
+	],
+	
+	"prices": [
+                {"key": "0", "value":"0"},
+				{"key": "20000", "value":"20,000"},
+				{"key": "50000", "value":"50,000"},
+				{"key": "80000", "value":"80,000"},
+				{"key": "100000", "value":"1 Lac"},
+				{"key": "500000", "value":"5 Lac"},
+				{"key": "1000000", "value":"10 Lac"},
+				{"key": "5000000", "value":"50 Lac"},
+				{"key": "10000000", "value":"1 Crore"},
+				{"key": "100000000", "value":"10 Crore"}
+              ],
+	"kms": [
+                {"key": "0", "value":"0"},
+				{"key": "20000", "value":"20,000"},
+				{"key": "50000", "value":"50,000"},
+				{"key": "80000", "value":"80,000"},
+				{"key": "100000", "value":"1 Lac"},
+				{"key": "500000", "value":"5 Lac"},
+				{"key": "1000000", "value":"10 Lac"}
+              ]
+}
